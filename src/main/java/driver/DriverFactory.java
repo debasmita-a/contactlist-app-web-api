@@ -1,5 +1,7 @@
 package driver;
 
+import java.util.Objects;
+
 import org.openqa.selenium.WebDriver;
 
 import enitity.DriverData;
@@ -29,7 +31,10 @@ public class DriverFactory {
 	}
 	
 	public static void tearDown() {
-		//TODO
+		if(Objects.nonNull(DriverManager.getDriver())){
+			DriverManager.getDriver().quit();
+			DriverManager.unload();
+		}
 	}
 
 }

@@ -10,7 +10,7 @@ public class AddUserPageTest extends BaseTest{
 	@Test
 	public void addUserTest() {
 		AddUserPage page = new AddUserPage();
-		page.enterFirstName("test56").enterLastName("last678")
+		page.enterFirstName("Curran").enterLastName("Lennert")
 		.enterEmail("testakiko@gmail.com")
 		.enterPassword("tyuierto")
 		.doSubmit();
