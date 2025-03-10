@@ -2,6 +2,8 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 
+import enitity.DriverData;
+
 import static config.ConfigFactory.getConfig;
 
 public class DriverFactory {
@@ -14,8 +16,12 @@ public class DriverFactory {
 	 * @return WebDriver
 	 */
 	public static WebDriver initDriver() {
-		driver =  getConfig().browser().equals("chrome") ? ChromeManager.getDriver()
-				: EdgeManager.getDriver();
+		DriverData driverData = new DriverData(getConfig().browser(), getConfig().runMode());
+		if(getConfig().runMode().equals("local")){
+			driver = new LocalDriverImpl().getDriver(driverData);
+		}else{
+			driver = new RemoteDriverImpl().getDriver(driverData);
+		}
 		DriverManager.setDriver(driver);
 		DriverManager.getDriver().get(getConfig().url());
 		DriverManager.getDriver().manage().window().maximize();

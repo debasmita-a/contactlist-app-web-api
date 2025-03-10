@@ -10,4 +10,5 @@ public final class ChromeManager {
 	public static WebDriver getDriver() {
 		return new ChromeDriver();
 	}
+
 }
