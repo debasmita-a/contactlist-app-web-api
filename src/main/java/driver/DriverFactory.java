@@ -1,13 +1,18 @@
 package driver;
 
-import static config.ConfigFactory.getConfig;
-
 import org.openqa.selenium.WebDriver;
+
+import static config.ConfigFactory.getConfig;
 
 public class DriverFactory {
 	
 	static WebDriver driver = null;
-	
+	/**
+	 * This should return a WebDriver OR a RemoteWebDriver instance based on
+	 * whether remote is true or false.
+	 * 
+	 * @return WebDriver
+	 */
 	public static WebDriver initDriver() {
 		driver =  getConfig().browser().equals("chrome") ? ChromeManager.getDriver()
 				: EdgeManager.getDriver();
