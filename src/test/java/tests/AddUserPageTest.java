@@ -23,11 +23,13 @@ public class AddUserPageTest extends BaseTest{
 		page.enterFirstName(data.getFirstName()).enterLastName(data.getLastName())
 		.enterEmail(data.getEmail())
 		.enterPassword(data.getPassword())
-		.doSubmit(); //assert with my contacts page title / url / Logout button
+		.doSubmit();
+		//TODO : assert with my contacts page title / url / Logout button
 	}
 
 	@Test(description = "User should not be able to sign up with same email ID")
-	public void emailExistsErrorTest(){ //provide test data accordingly
+	public void emailExistsErrorTest(){ 
+		//TODO : provide test data accordingly
 
 	}
 

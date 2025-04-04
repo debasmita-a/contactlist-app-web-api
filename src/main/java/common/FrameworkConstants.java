@@ -13,5 +13,12 @@ public class FrameworkConstants {
     public static final String LOGIN_ERROR_MESSAGE = "Incorrect username or password";
     public static final String USER_SIGNUP_ERROR_MESSAGE = "User validation failed";
     public static final String SIGNUP_EMAIL_EXISTS_ERROR = "Email address is already in use";
+    
+    private static final String CONFIGFILEPATH = "";
+
+	public static String getConfigfilepath() {
+		return CONFIGFILEPATH;
+	}
+    
 
 }
