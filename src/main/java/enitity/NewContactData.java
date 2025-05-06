@@ -14,14 +14,14 @@ public class NewContactData {
     private String firstName;
 	@NonNull
     private String lastName;
-    private String address;
-    private String email;
     private String dob;
-    private String city;
-    private String state;
-    private String country;
-    private String postal;
+    private String email;
+    private String phoneNumber;
     private String street1;
     private String street2;
-    
+    private String city;
+    private String state;
+    private String postal;
+    private String country;
+ 
 }

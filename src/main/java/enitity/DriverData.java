@@ -8,6 +8,6 @@ import lombok.Getter;
 public class DriverData {
 
     private String browser;
-    private String remoteUrl;
+    private String remoteURL;
 
 }

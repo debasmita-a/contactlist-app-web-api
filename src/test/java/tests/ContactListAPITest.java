@@ -1,5 +1,7 @@
 package tests;
 
+import java.io.File;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,7 +16,6 @@ public class ContactListAPITest {
 
 	private static final String BASE_URL = "https://thinking-tester-contact-list.herokuapp.com/users";
 	private static final String LOGIN_URL = "https://thinking-tester-contact-list.herokuapp.com/users/login";
-	private static String TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VlNGJjMzRhMDAwNDAwMTM5ZGI3OWUiLCJpYXQiOjE3NDM2NzQyNzh9.DGrruxR9PBg9xK8f9h5rFnEtjpJFcq5OZU3bcuakfeE";
 	
 	@DataProvider
 	public static Object[] getUserData(){
@@ -33,8 +34,30 @@ public class ContactListAPITest {
 		.post(BASE_URL);
 		
 		response.prettyPrint();
-		
+
 		System.out.println(response.getStatusCode());
+	}
+	
+	@Test
+	public void loginUserTest() {
+		File loginData = new File(System.getProperty("user.dir") + "/config/userlogin.json");
+		String jsonData = "{\r\n"
+				+ "	\"email\" : \"gale.shanahan@hotmail.com\",\r\n"
+				+ "	\"password\" : \"yfffs9ffmcz1\"\r\n"
+				+ "}";
+		Response response = RestAssured.given()
+				.contentType(ContentType.JSON)
+				//.header("Authorization", "Bearer" + " " + UserAPI.getToken())
+				.log().all()
+				.body(loginData)
+				.post(LOGIN_URL);
+		response.then().statusCode(200);
+
+		response.prettyPrint();
+		System.out.println(response.getStatusCode());
+		System.out.println(response.getCookie("token"));
+		System.out.println(response.jsonPath().getString("user._id"));
+	
 	}
 
 }

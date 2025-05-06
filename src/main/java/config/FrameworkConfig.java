@@ -9,4 +9,5 @@ public interface FrameworkConfig extends Config{
     String browser();
     String url();
     String runMode();
+    String remoteURL();
 }

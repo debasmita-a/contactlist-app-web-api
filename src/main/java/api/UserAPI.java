@@ -3,7 +3,6 @@ package api;
 import enitity.UserLogin;
 import enitity.UserSignUpData;
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -38,7 +37,21 @@ public final class UserAPI {
 		.body(user)
 		.post("/login");
 		
-		return  response.jsonPath().getString("token");
+		return response.jsonPath().getString("token");
+	}
+	
+	public static String getSessionId() {
+		UserLogin user = new UserLogin();
+		user.setEmail("gale.shanahan@hotmail.com");
+		user.setPassword("yfffs9ffmcz1");
+		
+		Response response =  RestAssured.given()
+		.contentType(ContentType.JSON)
+		.baseUri(BASE_URL)
+		.body(user)
+		.post("/login");
+		
+		return response.jsonPath().getString("user._id");
 	}
 
 }

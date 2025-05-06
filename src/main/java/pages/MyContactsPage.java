@@ -14,7 +14,7 @@ public class MyContactsPage extends BasePage{
 	}
 	
 	public AddContactPage doClickAddNewContactBtn() {
-		waitAndClick(ADD_NEW_CONTACT_BTN);
+		clickWithWait(ADD_NEW_CONTACT_BTN, 10);
 		return new AddContactPage();
 	}
 	

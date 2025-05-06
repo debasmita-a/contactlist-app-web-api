@@ -71,7 +71,7 @@ public class AddContactPage extends BasePage{
 		return this;
 	}
 	
-	private AddContactPage enter(String country) {
+	private AddContactPage enterCountry(String country) {
 		waitAndSendKeys(COUNTRY_TXT, country, 2);
 		return this;
 	}
@@ -89,8 +89,15 @@ public class AddContactPage extends BasePage{
 	public MyContactsPage createANewContact(NewContactData contactData) {
 		return enterFirstName(contactData.getFirstName())
 		.enterLastName(contactData.getLastName())
+		.enterDOB(contactData.getDob())
+		.enterEmail(contactData.getEmail())
+		.enterPhone(contactData.getPhoneNumber())
+		.enterStreetAddr1(contactData.getStreet1())
+		.enterStreetAddr2(contactData.getStreet2())
 		.enterCity(contactData.getCity())
 		.enterStateOrProvince(contactData.getState())
+		.enterPostalCode(contactData.getPostal())
+		.enterCountry(contactData.getCountry())
 		.doSubmit();
 	}
 	

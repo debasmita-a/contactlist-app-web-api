@@ -3,8 +3,11 @@
  */
 package utils;
 
+import java.time.ZoneId;
+
 import com.github.javafaker.Faker;
 
+import enitity.NewContactData;
 import enitity.UserSignUpData;
 
 /**
@@ -23,6 +26,22 @@ public class TestDataGenerator {
 				FAKER.name().lastName(),
 				FAKER.internet().emailAddress(),
 				FAKER.internet().password()
+				);			
+	}
+	
+	public static NewContactData getContactData() {
+		return new NewContactData(
+				FAKER.name().firstName(), 
+				FAKER.name().lastName(),
+				FAKER.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(),
+				FAKER.internet().emailAddress(),
+				FAKER.phoneNumber().cellPhone(),
+				FAKER.address().streetAddress(),
+				FAKER.address().streetAddress(),
+				FAKER.address().city(),
+				FAKER.address().state(),
+				FAKER.address().zipCode(),
+				FAKER.address().country()
 				);
 				
 	}
