@@ -4,6 +4,7 @@
 package utils;
 
 import java.time.ZoneId;
+import java.util.Locale;
 
 import com.github.javafaker.Faker;
 

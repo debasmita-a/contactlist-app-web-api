@@ -1,5 +1,8 @@
 package driver;
 
+import static config.ConfigFactory.getConfig;
+
+import java.util.Map;
 import java.util.Objects;
 
 import org.openqa.selenium.Cookie;
@@ -8,8 +11,6 @@ import org.openqa.selenium.WebDriver;
 
 import api.UserAPI;
 import enitity.DriverData;
-
-import static config.ConfigFactory.getConfig;
 
 public class DriverFactory {
 
@@ -29,20 +30,21 @@ public class DriverFactory {
 			driver = new RemoteDriverImpl().getDriver(driverData);
 		}
 		DriverManager.setDriver(driver);
+		Map<String, String> SESSIONDATA = UserAPI.getSessionData();
 		DriverManager.getDriver().get(getConfig().url());
-		
 		// With API Login :::
-	    String token = UserAPI.getToken();
-	    Cookie tokenCookie = new Cookie.Builder("token", token)
+		//Map<String, String> SESSIONDATA = UserAPI.getSessionData();
+	    
+	    Cookie tokenCookie = new Cookie.Builder("token", SESSIONDATA.get("token"))
 	        .domain("thinking-tester-contact-list.herokuapp.com") 
 	        .path("/")
-	        .isHttpOnly(true)
-	        .isSecure(true)
 	        .build();
 	    driver.manage().addCookie(tokenCookie);
 	    
+	    ((JavascriptExecutor)DriverManager.getDriver()).executeScript("window.localStorage.setItem('id', '" + SESSIONDATA.get("id") + "');");
+	    
 	    DriverManager.getDriver().navigate().refresh();
-		
+	    DriverManager.getDriver().get(getConfig().url() + "/contactList");
 		DriverManager.getDriver().manage().window().maximize();
 		return DriverManager.getDriver();
 	}

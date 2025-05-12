@@ -16,8 +16,10 @@ public class AddContactPageTest extends BaseTest{
 	
 	@DataProvider
 	public Object[] getContactData() {
-		NewContactData contactData = TestDataGenerator.getContactData();
-		return new Object[] {contactData};
+		NewContactData contactData_1 = TestDataGenerator.getContactData();
+		//NewContactData contactData_2 = TestDataGenerator.getContactData();
+		//NewContactData contactData_3 = TestDataGenerator.getContactData();
+		return new Object[] {contactData_1};
 	}
 	
 	@Test(dataProvider="getContactData")
